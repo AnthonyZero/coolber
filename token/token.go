@@ -47,3 +47,16 @@ type Token struct {
 	Type    TokenType
 	Literal string //字面量
 }
+
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+// LookupIdent 标识符和关键字区分
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
